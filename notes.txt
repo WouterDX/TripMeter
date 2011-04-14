@@ -1,0 +1,71 @@
+First, let's look at a basic demo on geo such as html5demos.com/geo#view-source,
+since I still don't know what I'm doing...
+
+Dumb first note: so title only specifies what's in the browser tab...heh.
+
+Getting the google maps API now: <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+
+In the meantime, reading the interesting site: "http://diveintohtml5.org", which starts from ground up (quite important for an html noob like me!).
+Important points I got already: 
+    <a SOMETHING>: a here stands for anchor! 
+    Hence: SOMETHING "can be embedded in an anchor like anything else; when that happens, it becomes an icon that’s sensitive to activation just like a regular text anchor."
+
+2.  detection technique_A:  use global objects (examples: navigator, window) to check for included functionality
+        very crudely:  use boolean = navigation.geolocation
+
+        example2: check for storage , however to be safe you need a fluke try catch: 
+
+            try 
+            {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            }
+            catch (e) 
+            {
+                return false;
+            }
+
+        example3 : check for web workers: 
+
+            use boolean= window.Worker;
+
+        example4: check for offline support: 
+
+            use boolean= window.applicationCache;
+
+
+    detection technique_B:  find a type-specific property, if it doesn't exist there's no support
+        use boolean = document.createElement('canvas').getContext;
+        
+        NOTE: you need to check for canvas text separately (when the previous returns true): 
+        
+        var dummy_canvas = document.createElement('canvas');
+        var context = dummy_canvas.getContext('2d');
+        use boolean = typeof context.fillText == 'function';
+
+    detection technique_C: find a type-specific method, if it returns a bad call there's no support
+        example: video: first we apply technique_B to check for video support in general: 
+
+            checkok = document.createElement('video').canPlayType;
+
+        next step: check for specific format with technique_C : 
+            
+            var bideo = document.createElement("video");
+            use boolean = bideo.canPlayType('video/ogg; codecs="theora, vorbis"'); 
+            //checks whether browser can play theora video and vorbis audio in an ogg container
+
+    detection technique_D : check a (sub)type property of a created element, then check if property is still existing
+        var i = document.createElement("input"); //generic element input created
+        i.setAttribute("type", "color"); //make element specific type color
+        use boolean= i.type !== "text"; // 
+        
+        NOTE: crucial step is that the generic input type is of type text!
+
+    NOTE: on the site, there's use of double negative to have an implicit cast to boolean....the reason why is found here: 
+        "Why would you bother? Because it makes functions like the one you show more predictable.
+        If it didn't have the double negative in there, it might return undefined, a Function object, or
+        something not entirely unlike a Function object. If the caller of this function does something weird
+        with the return value, the overall code might misbehave ("weird" here means "anything but an operation
+        that enforces Boolean context"). The double-negative idiom prevents this."
+
+    NOTE2: The site highly recommends www.modernizr.com

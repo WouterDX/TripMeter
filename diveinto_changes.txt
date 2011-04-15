@@ -21,4 +21,4 @@ always set something or else have security leak: http://code.google.com/p/doctyp
 
 important: the stylesheet link: <link rel="stylesheet" href={adress} />
 
-
+to specify the language of a <link rel="alternate" /> , include the hreflang.

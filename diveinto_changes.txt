@@ -9,6 +9,9 @@ Also not necessary is a separate tag for the xml:lang:  in HTML5 YOU WANT IT TO 
 
 no type needed for stylesheet css
 
+<div=header> becomes <header>
+
+hgroup is used (as opposed to the <tagline> hack) to group headings together
 ***********************
 
 LESSONS LEARNT
@@ -19,6 +22,10 @@ it's also useful for cases where you let the user enter text (it will then be su
 you either have a meta tag which defines your charset encoding (like utf-8), or you have a http header that defines it ("Content-Type: text/html; charset="utf-8").
 always set something or else have security leak: http://code.google.com/p/doctype/wiki/ArticleUtf7
 
-important: the stylesheet link: <link rel="stylesheet" href={adress} />
+important:              the stylesheet link: <link rel="stylesheet" href="{adress}" />
+second-most important:  the icon link      : <link rel="shortcut icon" href="/favicon.ico">
+    NOTE: you can use "sizes" attribute for icon in HTML5
 
 to specify the language of a <link rel="alternate" /> , include the hreflang.
+
+

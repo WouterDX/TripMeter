@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Canvas tests</title>
+        <link rel="stylesheet" href="css/diveinto.css" /> 
+        <link rel="alternate" type="application/atom+xml" title="My Weblog feed" href="/feed/" /> 
+        <link rel="search" type="application/opensearchdescription+xml" title="My Weblog search" href="opensearch.xml" /> 
+        <link rel="shortcut icon" href="/favicon.ico" /> 
+    </head>
+    <body>
+        <p> Every canvas starts out blank. That's boring! Let's draw something (please mouse over the box, click to retry).</p>
+        <canvas id="frame1" width="300" height="225" style="border:1px dotted;float:left" onmouseover="draw_frame1();return false" onclick="reset_frame1();return false"></canvas>
+        <script> 
+            function draw_frame1() 
+            {
+                try
+                {
+                    var b_canvas = document.getElementById("frame1");
+                    var b_context = b_canvas.getContext("2d");
+                    b_context.fillRect(50,25,150,100);
+                }
+                catch(err){}
+            }
+            function reset_frame1()
+            {
+                try
+                {
+                    var b_canvas = document.getElementById("frame1");
+                    b_canvas.width = b_canvas.width;
+                }
+                catch(err) {}
+            }
+        </script>
+                
+    </body>
+</html>

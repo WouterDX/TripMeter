@@ -1,0 +1,24 @@
+CHANGES
+*******
+
+DOCTYPE: only one DOCTYPE needed in HTML5 = <!DOCTYPE html>
+
+XHTML need not be explicitly declared in the root element (no <html xmlns=<SOURCE>>).
+Also not necessary is a separate tag for the xml:lang:  in HTML5 YOU WANT IT TO BE THE SAME TAG.
+    (if not, you get problems)
+
+no type needed for stylesheet css
+
+***********************
+
+LESSONS LEARNT
+**************
+language attribute for <html> : this is useful when you provide your page in more than one language (and let the user choose)
+it's also useful for cases where you let the user enter text (it will then be sure that the page supports right characters).
+
+you either have a meta tag which defines your charset encoding (like utf-8), or you have a http header that defines it ("Content-Type: text/html; charset="utf-8").
+always set something or else have security leak: http://code.google.com/p/doctype/wiki/ArticleUtf7
+
+important: the stylesheet link: <link rel="stylesheet" href={adress} />
+
+
